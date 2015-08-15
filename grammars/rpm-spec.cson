@@ -14,68 +14,73 @@
   }
 	{
 			"match": "^(Icon|ExclusiveOs|ExcludeOs):"
-			"name": "keyword.spec"
+			"name": "keyword.rpm-spec"
 	}
   {
 			"match": "^(BuildArch|BuildArchitectures|ExclusiveArch|ExcludeArch):"
-			"name": "keyword.spec"
+			"name": "keyword.rpm-spec"
 	}
   {
 			"match": "^(Conflicts|Obsoletes|Provides|Requires|Requires\\(.*\\)):"
-			"name": "keyword.spec"
+			"name": "keyword.rpm-spec"
 	}
   {
 			"match": "^(Enhances|Suggests|BuildConflicts|BuildRequires|Recommends):"
-			"name": "keyword.spec"
+			"name": "keyword.rpm-spec"
 	}
   {
 			"match": "^(PreReq|Supplements|Epoch|Serial|Nosource|Nopatch):"
-			"name": "keyword.spec"
+			"name": "keyword.rpm-spec"
 	}
   {
 			"match": "^(AutoReq|AutoProv|AutoReqProv):"
-			"name": "keyword.spec"
+			"name": "keyword.rpm-spec"
 	}
   {
 			"match": "^(Copyright|License|Summary|Summary\\(.*\\)|Distribution):"
-			"name": "keyword.spec"
+			"name": "keyword.rpm-spec"
 	}
   {
   		"match": "^(Vendor|Packager|Group|Source\\d*|Patch\\d*|BuildRoot|Prefix):"
-  		"name": "keyword.spec"
+  		"name": "keyword.rpm-spec"
   	}
   {
 			"match": "^(Name|Version|Release|Url|URL):"
-			"name": "keyword.spec"
+			"name": "keyword.rpm-spec"
 	}
   {
-			"name": "keyword.spec"
+			"name": "keyword.rpm-spec"
 			"begin": "^(Source|Patch)"
 			"end": ":"
 	}
   {
-			"match": "^%(build$|changelog|check$|clean$|description|files|install$|package|prep$|pre|preun|post|postun|trigger|triggerin|triggerpostun|triggerun|verifyscript)"
-			"name": "keyword.control.spec"
+			"match": "^%(build$|changelog|check$|clean$|description|files|install$|package|prep$|preun|postun|triggerin|triggerpostun|triggerun|verifyscript)"
+			"name": "entity.name.section.rpm-spec"
 	}
   {
+			"match": "^%(pre|post|trigger)"
+			"name": "entity.name.section.rpm-spec"
+	}
+
+  {
 			"match": "%(ifarch|ifnarch|ifos|ifnos|if[ ])"
-			"name": "keyword.control.spec"
+			"name": "keyword.control.rpm-spec"
 	}
   {
 			"match": "^%(else$|endif$|define|global|undefine)"
-			"name": "keyword.control.spec"
+			"name": "keyword.control.rpm-spec"
 	}
   {
 			"match": "^# norootforbuild"
-			"name": "keyword.spec"
+			"name": "keyword.rpm-spec"
 	}
   {
 			"match": "^\\s*#.*$",
-			"name": "comment.line.spec"
+			"name": "comment.line.rpm-spec"
 	}
   {
 			"match": "^\\* .*\\)$",
-			"name": "meta.documentation.spec"
+			"name": "meta.documentation.rpm-spec"
 	}
   {
 			"begin": "%\\{"
@@ -83,12 +88,12 @@
 			"patterns": [
 				{
 					"match": "\\??[A-Za-z0-9_]*"
-					"name": "variable.spec"
+					"name": "variable.parameter.rpm-spec"
 				}
 			]
 	}
   {
-			"match": "%([A-Za-z0-9_]+)"
-			"name": "variable.spec"
+			"match": ".*%([A-Za-z0-9_]+).*"
+			"name": "variable.parameter.rpm-spec"
 	}
 ]
