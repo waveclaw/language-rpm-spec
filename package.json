@@ -1,0 +1,22 @@
+{
+  "name": "language-rpm-spec",
+  "main": "./lib/language-rpm-spec",
+  "version": "0.1.0",
+  "description": "Syntax highlighting for RPM Specfiles",
+  "keyswords": [ "rpm", "spec", "packaging", "linux", "specfile"
+  ],
+  "engines": {
+    "atom": ">=1.0.0 <2.0.0",
+    "node": "*"
+  },
+  "homepage": "http://atom.github.io",
+  "repository": "https://github.com/waveclaw/language-rpm-spec",
+  "bugs": "https://github.com/waveclaw/language-rpm-spec/issues",
+  "devDependencies": {
+    "coffeelint": "^1.10.1",
+    "coffee-script": "1.7.0"
+  },
+  "license": "MIT",
+  "dependencies": {
+  }
+}

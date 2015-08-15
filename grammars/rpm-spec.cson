@@ -1,0 +1,94 @@
+'scopeName': 'source.rpm.spec'
+'fileTypes': [
+  'spec'
+]
+'foldingStartMarker': '(^%(build$|changelog|check$|clean$|description|files|install$|package|pre|prep$|preun|post|postun|trigger|triggerin|triggerpostun|triggerun|verifyscript)\\s*$)'
+'foldingStopMarker': '(^$)'
+'name': 'RPMSpec'
+'patterns': [
+  {
+    'include': '#line_comment'
+  }
+  {
+    'include': '#constants'
+  }
+	{
+			"match": "^(Icon|ExclusiveOs|ExcludeOs):"
+			"name": "keyword.spec"
+	}
+  {
+			"match": "^(BuildArch|BuildArchitectures|ExclusiveArch|ExcludeArch):"
+			"name": "keyword.spec"
+	}
+  {
+			"match": "^(Conflicts|Obsoletes|Provides|Requires|Requires\\(.*\\)):"
+			"name": "keyword.spec"
+	}
+  {
+			"match": "^(Enhances|Suggests|BuildConflicts|BuildRequires|Recommends):"
+			"name": "keyword.spec"
+	}
+  {
+			"match": "^(PreReq|Supplements|Epoch|Serial|Nosource|Nopatch):"
+			"name": "keyword.spec"
+	}
+  {
+			"match": "^(AutoReq|AutoProv|AutoReqProv):"
+			"name": "keyword.spec"
+	}
+  {
+			"match": "^(Copyright|License|Summary|Summary\\(.*\\)|Distribution):"
+			"name": "keyword.spec"
+	}
+  {
+  		"match": "^(Vendor|Packager|Group|Source\\d*|Patch\\d*|BuildRoot|Prefix):"
+  		"name": "keyword.spec"
+  	}
+  {
+			"match": "^(Name|Version|Release|Url|URL):"
+			"name": "keyword.spec"
+	}
+  {
+			"name": "keyword.spec"
+			"begin": "^(Source|Patch)"
+			"end": ":"
+	}
+  {
+			"match": "^%(build$|changelog|check$|clean$|description|files|install$|package|prep$|pre|preun|post|postun|trigger|triggerin|triggerpostun|triggerun|verifyscript)"
+			"name": "keyword.control.spec"
+	}
+  {
+			"match": "%(ifarch|ifnarch|ifos|ifnos|if[ ])"
+			"name": "keyword.control.spec"
+	}
+  {
+			"match": "^%(else$|endif$|define|global|undefine)"
+			"name": "keyword.control.spec"
+	}
+  {
+			"match": "^# norootforbuild"
+			"name": "keyword.spec"
+	}
+  {
+			"match": "^\\s*#.*$",
+			"name": "comment.line.spec"
+	}
+  {
+			"match": "^\\* .*\\)$",
+			"name": "meta.documentation.spec"
+	}
+  {
+			"begin": "%\\{"
+			"end": "\\}"
+			"patterns": [
+				{
+					"match": "\\??[A-Za-z0-9_]*"
+					"name": "variable.spec"
+				}
+			]
+	}
+  {
+			"match": "%([A-Za-z0-9_]+)"
+			"name": "variable.spec"
+	}
+]
