@@ -3,7 +3,7 @@ describe "RPMSpec grammar", ->
 
   beforeEach ->
     waitsForPromise ->
-      atom.packages.activatePackage("language-rpmspec")
+      atom.packages.activatePackage("language-rpm-spec")
 
     runs ->
       grammar = atom.grammars.grammarForScopeName("source.rpm.spec")
