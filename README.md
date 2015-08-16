@@ -5,7 +5,7 @@ Add syntax highlighting and snippets to package.spec files in Atom.
  This particular highlighting scheme is based on the KDE Project coloring and 
 spec.nanorc by Asterios Dramis.
 
-![A screenshot of your package](https://f.cloud.github.com/assets/69169/2290250/c35d867a-a017-11e3-86be-cd7c5bf3ff9b.gif)
+![A screenshot of your package](https://raw.githubusercontent.com/waveclaw/language-rpm-spec/master/atom-language-rpm-spec.png)
 
 RPM Package Manager files are the packaging format of many popular Linux
 distributions such as RedHat and CentOS, openSuSE and the Fedora Project. RPMs
