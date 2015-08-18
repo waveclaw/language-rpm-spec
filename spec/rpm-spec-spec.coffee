@@ -1,3 +1,7 @@
+{TextEditor} = require 'atom'
+fs = require 'fs'
+path = require 'path'
+
 describe 'RPMSpec grammar', ->
   grammar = null
 
