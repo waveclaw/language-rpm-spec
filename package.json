@@ -1,9 +1,14 @@
 {
   "name": "language-rpm-spec",
   "main": "./lib/language-rpm-spec",
-  "version": "0.2.0",
+  "version": "0.2.1-0",
   "description": "Syntax highlighting for RPM Specfiles",
-  "keyswords": [ "rpm", "spec", "packaging", "linux", "specfile"
+  "keyswords": [
+    "rpm",
+    "spec",
+    "packaging",
+    "linux",
+    "specfile"
   ],
   "engines": {
     "atom": ">=1.0.0 <2.0.0",
@@ -17,6 +22,5 @@
     "coffee-script": "1.7.0"
   },
   "license": "MIT",
-  "dependencies": {
-  }
+  "dependencies": {}
 }
