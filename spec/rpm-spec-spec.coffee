@@ -41,7 +41,7 @@ describe 'RPMSpec grammar', ->
     expect(tokens[0]).toEqual value: 'GPL-2.0', scopes: ['source.rpm-spec',
      'constant.language.rpm-spec']
 
-# to be fair, I just don't get this one: why tokens[1] == the captured null junk?
+# to be fair, I just don't get this one: why tokens[1] ==  captured null junk?
   it 'tokenizes the license header', ->
     {tokens} = grammar.tokenizeLine('License: Apache-1.1')
     expect(tokens[0]).toEqual value: 'License:', scopes: ['source.rpm-spec',
@@ -56,8 +56,8 @@ describe 'RPMSpec grammar', ->
 
   it 'tokenizes an architectural header', ->
     {tokens} = grammar.tokenizeLine('ExclusiveArch: armv7l')
-    expect(tokens[0]).toEqual value: 'ExclusiveArch:', scopes: ['source.rpm-spec',
-     'keyword.rpm-spec']
+    expect(tokens[0]).toEqual value: 'ExclusiveArch:', scopes:
+      ['source.rpm-spec', 'keyword.rpm-spec']
     expect(tokens[2]).toEqual value: 'armv7l', scopes: ['source.rpm-spec',
      'constant.language.rpm-spec']
 
