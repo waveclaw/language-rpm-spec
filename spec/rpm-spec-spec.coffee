@@ -143,7 +143,7 @@ describe 'RPMSpec grammar', ->
     expect(tokens[1]).toEqual value: 'version', scopes: ['source.rpm-spec',
      'variable.other.rpm-spec']
 
-# tokent[0] is the pre-matched part, 3 is post matched
+# token[0] is the pre-matched part, 3 is post matched
   it 'tokenizes variables near whitespace', ->
     {tokens} = grammar.tokenizeLine(' %version ')
     expect(tokens[1]).toEqual value: '%', scopes: ['source.rpm-spec',
@@ -219,3 +219,43 @@ describe 'RPMSpec grammar', ->
     {tokens} = grammar.tokenizeLine('%patch0 -p1')
     expect(tokens[0]).toEqual value: '%patch0', scopes: ['source.rpm-spec',
       'keyword.control.rpm-spec']
+
+  it 'tokenizes a changelog section header', ->
+    {tokens} = grammar.tokenizeLine('%changelog -f my_file')
+    expect(tokens[0]).toEqual value: '%changelog', scopes: ['source.rpm-spec',
+      'entity.name.section.rpm-spec']
+
+  it 'tokenizes type I changelog entries', ->
+    lines = grammar.tokenizeLines '''
+%changelog
+* Thu Aug 13 21:31:52 UTC 2015 - jane@example.com
+- I added this extra content
+'''
+    expect(lines[0][0]).toEqual value: '%changelog', scopes: ['source.rpm-spec',
+      'entity.name.section.rpm-spec']
+    expect(lines[1][1]).toEqual value: 'Thu Aug 13 21:31:52 UTC 2015', scopes:
+      ['source.rpm-spec', 'constant.rpm-spec']
+    expect(lines[1][3]).toEqual value: 'jane@example.com', scopes:
+      ['source.rpm-spec','entity.name.rpm-spec']
+    expect(lines[2][1]).toEqual value: 'I added this extra content', scopes:
+      ['source.rpm-spec','comment.rpm-spec']
+
+
+  it 'tokenizes type II changelog entries', ->
+    lines = grammar.tokenizeLines '''
+%changelog
+* Sun Nov 09 2014 John Doe <john.doe@example.com> 0.40.15-2
+- I added this extra content
+'''
+    expect(lines[0][0]).toEqual value: '%changelog', scopes: ['source.rpm-spec',
+      'entity.name.section.rpm-spec']
+    expect(lines[1][1]).toEqual value: 'Sun Nov 09 2014', scopes:
+      ['source.rpm-spec', 'constant.rpm-spec']
+    expect(lines[1][3]).toEqual value: 'John Doe', scopes:
+      ['source.rpm-spec','entity.name.rpm-spec']
+    expect(lines[1][5]).toEqual value: '<john.doe@example.com>', scopes:
+      ['source.rpm-spec','entity.name.rpm-spec']
+    expect(lines[1][7]).toEqual value: '0.40.15-2', scopes:
+      ['source.rpm-spec','constant.language.rpm-spec']
+    expect(lines[2][1]).toEqual value: 'I added this extra content', scopes:
+      ['source.rpm-spec','comment.rpm-spec']

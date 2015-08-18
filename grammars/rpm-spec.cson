@@ -308,8 +308,20 @@
   'sections':
     'patterns': [
       {
-        'match': '^%(?:changelog|description)',
+        'match': '^%(?:description)',
         'name': 'entity.name.section.rpm-spec'
+      }
+      {
+        'begin': '^(%changelog)',
+        'beginCaptures':
+          '1':
+              'name': 'entity.name.section.rpm-spec',
+        'end': '\Z',  # we can cheat because changelog is last in file
+        'patterns': [
+          {
+            'include': '#changelogs'
+          }
+        ]
       }
       {
         'begin': '^(%files)',
@@ -326,6 +338,9 @@
           }
           {
             'include': '#variables'
+          }
+          {
+            'include': '#comments'
           }
         ]
       }
@@ -477,6 +492,36 @@
       {
       'match': '%(?:ifarch|ifnarch|ifnos|ifos|if|else|endif)',
       'name': 'keyword.control.rpm-spec'
+      }
+    ]
+  'changelogs':
+    'patterns': [
+      {
+        'match': '^[ \\t]*- (.+)',
+        'captures':
+          '1':
+              'name': 'comment.rpm-spec'
+      }
+      {
+        'match': '^\\* ([a-zA-Z]{3} [a-zA-Z]{3} \\d+(?: \\d+:\\d+:\\d+ [A-Z]{3})? \\d{4}) - (.+@.+)$',
+        'captures':
+          '1':
+              'name': 'constant.rpm-spec'
+          '2':
+              'name': 'entity.name.rpm-spec'
+      }
+      {
+        'match': '^\\* ([a-zA-Z]{3} [a-zA-Z]{3} \\d+ (?:\\d+:\\d+:\\d+ [A-Z]{3} )?\\d{4}) (.*) (<.+@.+>) ([0-9.-]+)?$',
+        'captures':
+          '1':
+              'name': 'constant.rpm-spec'
+          '2':
+              'name': 'entity.name.rpm-spec'
+          '3':
+              'name': 'entity.name.rpm-spec'
+          '4':
+              'name': 'constant.language.rpm-spec'
+
       }
     ]
 'scopeName': 'source.rpm-spec'
