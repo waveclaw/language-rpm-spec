@@ -1,0 +1,95 @@
+#
+# Copyright (c) 2015 JD Powell <waveclaw@waveclaw.net>
+#
+# All modifications and additions to the file contributed by third parties
+# remain the property of their copyright owners, unless otherwise agreed
+# upon. The license for this file, and modifications and additions to the
+# file, is the same license as for the pristine package itself (unless the
+# license for the pristine package is not an Open Source License, in which
+# case the license is the MIT License). An "Open Source License" is a
+# license that conforms to the Open Source Definition (Version 1.9)
+# published by the Open Source Initiative.
+#
+# Please submit bugfixes or comments via
+# https://github.com/waveclaw/language-rpm-spec/issues
+#
+'fileTypes': [
+  'changes'
+  'Changelog'
+  'CHANGES'
+  'CHANGELOG'
+]
+'foldingStartMarker': '(:?^[-]{30}|[ \\t]*\\*'
+'foldingStopMarker': '(^$)'
+'name': 'ChangeLogs'
+'patterns': [
+  {
+    'match': '^[*+=-]{30}[+==-]*'
+    'name': 'entity.section.name.changelogs'
+  }
+  # Changelog details
+  {
+    'match': '^[ \\t]*- (.+)',
+    'captures':
+      '1':
+          'name': 'comment.changelogs'
+  }
+# SuSE Open Build Service .changes files
+  {
+    'match': '^(?:\\* )?([a-zA-Z]{3} [a-zA-Z]{3}[ ]+\\d+ \\d+:\\d+:\\d+ [A-Z]+ \\d{4}) - (.*) (<.*@.*>) ([#_a-zA-Z0-9.-]+)$',
+    'captures':
+      '1':
+          'name': 'constant.changelogs'
+      '2':
+          'name': 'entity.name.changelogs'
+      '3':
+          'name': 'variable.other.changelogs'
+      '4':
+          'name': 'constant.numeric.changelogs'
+  }
+# GNU Type II changelogs
+  {
+    'match': '^(?:\\* )?([a-zA-Z]{3} [a-zA-Z]{3}[ ]+\\d+(?: \\d+:\\d+:\\d+ [A-Z]+)? \\d{4}) (.*) (<.+@.+>)(?: -)? ([#a-zA-Z0-9.-]+)?$',
+    'captures':
+      '1':
+          'name': 'constant.changelogs'
+      '2':
+          'name': 'entity.name.changelogs'
+      '3':
+          'name': 'variable.other.changelogs'
+      '4':
+          'name': 'constant.numeric.changelogs'
+  }
+# RedHat New Style changelogs
+  {
+    'match': '^(?:\\* )?([a-zA-Z]{3} [a-zA-Z]{3}[ ]+\\d+(?: \\d+:\\d+:\\d+ [A-Z]+)? \\d{4}) (.*) (<.*@.*>)(?: -) (.*)$',
+    'captures':
+      '1':
+          'name': 'constant.changelogs'
+      '2':
+          'name': 'entity.name.changelogs'
+      '3':
+          'name': 'variable.other.changelogs'
+      '4':
+          'name': 'constant.numeric.changelogs'
+  }
+# GNU Type I changelogs
+  {
+    'match': '^(?:\\* )?([a-zA-Z]{3} [a-zA-Z]{3}[ ]+\\d+(?: \\d+:\\d+:\\d+ [A-Z]+)? \\d{4})(?: -) (.+@.+)$',
+    'captures':
+      '1':
+          'name': 'constant.changelogs'
+      '2':
+          'name': 'variable.other.changelogs'
+  }
+# SuSE Old Style changelogs
+  {
+    'match': '^(?:\\* )?([a-zA-Z]{3} [a-zA-Z]+[ ]+\\d+ \\d{4}) (.+@.+)$',
+    'captures':
+      '1':
+          'name': 'constant.changelogs'
+      '2':
+          'name': 'variable.other.changelogs'
+  }
+]
+'scopeName': 'source.changelogs.rpm-spec'
