@@ -29,7 +29,7 @@
     "level": "error"
   },
   "spacing_after_comma": {
-    "level": "error"
+    "level": "ignore"
   },
   "no_stand_alone_at": {
     "level": "error"
