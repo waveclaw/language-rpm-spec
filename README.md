@@ -20,7 +20,7 @@ Linux operating system.
 
 A specfile ends in .spec and is usually named for the project's source code that
 is to be deployed.  The process of making an RPM from the various parts, known
-as building, is driven the the instructions in the specfile.
+as building, is driven by instructions in the specfile.
 
 High quality specfiles are a key part of providing repeatable and consistent
 experiences delivering programs, fonts, graphics, utilities and even entire
