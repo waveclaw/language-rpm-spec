@@ -278,3 +278,37 @@ describe 'RPMSpec grammar', ->
       ['source.rpm-spec','constant.language.rpm-spec']
     expect(lines[2][1]).toEqual value: 'I added this extra content', scopes:
       ['source.rpm-spec','comment.rpm-spec']
+
+  it 'tokenizes RedHat type changelog entries', ->
+    lines = grammar.tokenizeLines '''
+%changelog
+* Mon May 20 2013 Jane Doe <jdoe@redhat.com> - 3.0.0-26.el3_1.1
+- foo bar
+'''
+    expect(lines[0][0]).toEqual value: '%changelog', scopes: ['source.rpm-spec',
+      'entity.name.section.rpm-spec']
+    expect(lines[1][1]).toEqual value: 'Mon May 20 2013', scopes:
+      ['source.rpm-spec', 'constant.rpm-spec']
+    expect(lines[1][3]).toEqual value: 'Jane Doe', scopes:
+      ['source.rpm-spec','entity.name.rpm-spec']
+    expect(lines[1][5]).toEqual value: '<jdoe@redhat.com>', scopes:
+      ['source.rpm-spec','entity.name.rpm-spec']
+    expect(lines[1][7]).toEqual value: '3.0.0-26.el3_1.1', scopes:
+      ['source.rpm-spec','constant.language.rpm-spec']
+    expect(lines[2][1]).toEqual value: 'foo bar', scopes:
+      ['source.rpm-spec','comment.rpm-spec']
+
+  it 'tokenizes old SuSE changelog entries', ->
+    lines = grammar.tokenizeLines '''
+%changelog
+* Sat Jul  3 2010 jane@suse.de
+- I added this extra content
+'''
+    expect(lines[0][0]).toEqual value: '%changelog', scopes: ['source.rpm-spec',
+      'entity.name.section.rpm-spec']
+    expect(lines[1][1]).toEqual value: 'Sat Jul  3 2010', scopes:
+      ['source.rpm-spec', 'constant.rpm-spec']
+    expect(lines[1][3]).toEqual value: 'jane@suse.de', scopes:
+      ['source.rpm-spec','entity.name.rpm-spec']
+    expect(lines[2][1]).toEqual value: 'I added this extra content', scopes:
+      ['source.rpm-spec','comment.rpm-spec']

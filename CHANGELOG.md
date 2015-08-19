@@ -1,3 +1,12 @@
+## 0.4.1 - package release
+* add parsing of RedHat new style changelog entries
+* add parsing of SuSE old style changelog entries
+* package section is an actual section
+* prep highlights after shell code in tested examples now
+
+## 0.2.1 - atom release
+* published to atom.io
+
 ## 0.2.0 - changelog release
 * add parsing of type I and type II GNU changelog entries
 

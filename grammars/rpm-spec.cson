@@ -323,7 +323,7 @@
   'sections':
     'patterns': [
       {
-        'match': '^%(?:description)',
+        'match': '^%(?:description|package)',
         'name': 'entity.name.section.rpm-spec'
       }
       {
@@ -511,22 +511,25 @@
     ]
   'changelogs':
     'patterns': [
+# Changelog details
       {
         'match': '^[ \\t]*- (.+)',
         'captures':
           '1':
               'name': 'comment.rpm-spec'
       }
+# GNU Type I changelogs
       {
-        'match': '^\\* ([a-zA-Z]{3} [a-zA-Z]{3} \\d+(?: \\d+:\\d+:\\d+ [A-Z]{3})? \\d{4}) - (.+@.+)$',
+        'match': '^\\* ([a-zA-Z]{3} [a-zA-Z]{3}[ ]+\\d+(?: \\d+:\\d+:\\d+ [A-Z]{3})? \\d{4})(?: -) (.+@.+)$',
         'captures':
           '1':
               'name': 'constant.rpm-spec'
           '2':
               'name': 'entity.name.rpm-spec'
       }
+# GNU Type II changelogs
       {
-        'match': '^\\* ([a-zA-Z]{3} [a-zA-Z]{3} \\d+ (?:\\d+:\\d+:\\d+ [A-Z]{3} )?\\d{4}) (.*) (<.+@.+>) ([0-9.-]+)?$',
+        'match': '^\\* ([a-zA-Z]{3} [a-zA-Z]{3}[ ]+\\d+(?: \\d+:\\d+:\\d+ [A-Z]{3})? \\d{4}) (.*) (<.+@.+>) ([a-zA-Z0-9.-]+)?$',
         'captures':
           '1':
               'name': 'constant.rpm-spec'
@@ -537,6 +540,29 @@
           '4':
               'name': 'constant.language.rpm-spec'
 
+      }
+# RedHat New Style changelogs
+      {
+        'match': '^\\* ([a-zA-Z]{3} [a-zA-Z]{3}[ ]+\\d+(?: \\d+:\\d+:\\d+ [A-Z]{3})? \\d{4}) (.*) (<.*@.*>)(?: -) (.*)',
+        'captures':
+          '1':
+              'name': 'constant.rpm-spec'
+          '2':
+              'name': 'entity.name.rpm-spec'
+          '3':
+              'name': 'entity.name.rpm-spec'
+          '4':
+              'name': 'constant.language.rpm-spec'
+
+      }
+# SuSE Old Style changelogs
+      {
+        'match': '^\\* ([a-zA-Z]{3} [a-zA-Z]{3}[ ]+\\d+ \\d{4}) (.+@.+)$',
+        'captures':
+          '1':
+              'name': 'constant.rpm-spec'
+          '2':
+              'name': 'entity.name.rpm-spec'
       }
     ]
 'scopeName': 'source.rpm-spec'
