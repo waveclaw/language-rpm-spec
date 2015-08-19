@@ -401,7 +401,7 @@
             'include': '#variables'
           }
           {
-            'include': 'source.shell'
+            'include': '#shell_syntax'
           }
         ]
       }
@@ -451,7 +451,7 @@
       }
 
       {
-        'match': '(%\\{\\?)([a-zA-Z_][a-zA-Z0-9_:]*)(\\})',
+        'match': '(%\\{[!?]+)([a-zA-Z_][a-zA-Z0-9_:]*)(\\})',
         'captures':
           '1':
               'name': 'punctuation.other.bracket.rpm-spec'
@@ -471,7 +471,7 @@
               'name': 'punctuation.other.bracket.rpm-spec'
       }
       {
-        'match': '(%\\?)([a-zA-Z_][a-zA-Z0-9_:]*)',
+        'match': '(%[!?]+)([a-zA-Z_][a-zA-Z0-9_:]*)',
         'captures':
           '1':
               'name': 'punctuation.other.bracket.rpm-spec'
@@ -509,60 +509,20 @@
       'name': 'keyword.control.rpm-spec'
       }
     ]
-  'changelogs':
+  'shell_syntax':
+    'comment': 'Set disabled to 1 to turn off syntax highlight of shellcode'
+    'disabled': 0
     'patterns': [
-# Changelog details
       {
-        'match': '^[ \\t]*- (.+)',
-        'captures':
-          '1':
-              'name': 'comment.rpm-spec'
+        'include': 'source.shell'
       }
-# GNU Type I changelogs
+    ]
+  'changelogs':
+    'comment': 'Set disabled to 1 to turn off syntax highlight of logs'
+    'disabled': 0
+    'patterns': [
       {
-        'match': '^\\* ([a-zA-Z]{3} [a-zA-Z]{3}[ ]+\\d+(?: \\d+:\\d+:\\d+ [A-Z]{3})? \\d{4})(?: -) (.+@.+)$',
-        'captures':
-          '1':
-              'name': 'constant.rpm-spec'
-          '2':
-              'name': 'entity.name.rpm-spec'
-      }
-# GNU Type II changelogs
-      {
-        'match': '^\\* ([a-zA-Z]{3} [a-zA-Z]{3}[ ]+\\d+(?: \\d+:\\d+:\\d+ [A-Z]{3})? \\d{4}) (.*) (<.+@.+>) ([a-zA-Z0-9.-]+)?$',
-        'captures':
-          '1':
-              'name': 'constant.rpm-spec'
-          '2':
-              'name': 'entity.name.rpm-spec'
-          '3':
-              'name': 'entity.name.rpm-spec'
-          '4':
-              'name': 'constant.language.rpm-spec'
-
-      }
-# RedHat New Style changelogs
-      {
-        'match': '^\\* ([a-zA-Z]{3} [a-zA-Z]{3}[ ]+\\d+(?: \\d+:\\d+:\\d+ [A-Z]{3})? \\d{4}) (.*) (<.*@.*>)(?: -) (.*)',
-        'captures':
-          '1':
-              'name': 'constant.rpm-spec'
-          '2':
-              'name': 'entity.name.rpm-spec'
-          '3':
-              'name': 'entity.name.rpm-spec'
-          '4':
-              'name': 'constant.language.rpm-spec'
-
-      }
-# SuSE Old Style changelogs
-      {
-        'match': '^\\* ([a-zA-Z]{3} [a-zA-Z]{3}[ ]+\\d+ \\d{4}) (.+@.+)$',
-        'captures':
-          '1':
-              'name': 'constant.rpm-spec'
-          '2':
-              'name': 'entity.name.rpm-spec'
+        'include': 'source.changelogs.rpm-spec'
       }
     ]
 'scopeName': 'source.rpm-spec'

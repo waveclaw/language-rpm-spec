@@ -1,3 +1,8 @@
+## 0.5.0 - logical logs
+* separate changelog grammar
+* handle openSuSE Build Service changelogs written by the osc tool
+* handle variables with inverted tests
+
 ## 0.4.1 - package release
 * add parsing of RedHat new style changelog entries
 * add parsing of SuSE old style changelog entries

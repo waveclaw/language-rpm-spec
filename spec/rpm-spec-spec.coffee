@@ -162,6 +162,13 @@ describe 'RPMSpec grammar', ->
     expect(tokens[1]).toEqual value: 'version', scopes: ['source.rpm-spec',
      'variable.other.rpm-spec']
 
+  it 'tokenizes inverted questioned variables', ->
+    {tokens} = grammar.tokenizeLine('%!?version')
+    expect(tokens[0]).toEqual value: '%!?', scopes: ['source.rpm-spec',
+     'punctuation.other.bracket.rpm-spec']
+    expect(tokens[1]).toEqual value: 'version', scopes: ['source.rpm-spec',
+     'variable.other.rpm-spec']
+
 # token[0] is the pre-matched part, 3 is post matched
   it 'tokenizes variables near whitespace', ->
     {tokens} = grammar.tokenizeLine(' %version ')
@@ -253,11 +260,11 @@ describe 'RPMSpec grammar', ->
     expect(lines[0][0]).toEqual value: '%changelog', scopes: ['source.rpm-spec',
       'entity.name.section.rpm-spec']
     expect(lines[1][1]).toEqual value: 'Thu Aug 13 21:31:52 UTC 2015', scopes:
-      ['source.rpm-spec', 'constant.rpm-spec']
+      ['source.rpm-spec', 'constant.changelogs']
     expect(lines[1][3]).toEqual value: 'jane@example.com', scopes:
-      ['source.rpm-spec','entity.name.rpm-spec']
+      ['source.rpm-spec','variable.other.changelogs']
     expect(lines[2][1]).toEqual value: 'I added this extra content', scopes:
-      ['source.rpm-spec','comment.rpm-spec']
+      ['source.rpm-spec','comment.changelogs']
 
 
   it 'tokenizes type II changelog entries', ->
@@ -269,15 +276,15 @@ describe 'RPMSpec grammar', ->
     expect(lines[0][0]).toEqual value: '%changelog', scopes: ['source.rpm-spec',
       'entity.name.section.rpm-spec']
     expect(lines[1][1]).toEqual value: 'Sun Nov 09 2014', scopes:
-      ['source.rpm-spec', 'constant.rpm-spec']
+      ['source.rpm-spec', 'constant.changelogs']
     expect(lines[1][3]).toEqual value: 'John Doe', scopes:
-      ['source.rpm-spec','entity.name.rpm-spec']
+      ['source.rpm-spec','entity.name.changelogs']
     expect(lines[1][5]).toEqual value: '<john.doe@example.com>', scopes:
-      ['source.rpm-spec','entity.name.rpm-spec']
+      ['source.rpm-spec','variable.other.changelogs']
     expect(lines[1][7]).toEqual value: '0.40.15-2', scopes:
-      ['source.rpm-spec','constant.language.rpm-spec']
+      ['source.rpm-spec','constant.numeric.changelogs']
     expect(lines[2][1]).toEqual value: 'I added this extra content', scopes:
-      ['source.rpm-spec','comment.rpm-spec']
+      ['source.rpm-spec','comment.changelogs']
 
   it 'tokenizes RedHat type changelog entries', ->
     lines = grammar.tokenizeLines '''
@@ -288,15 +295,15 @@ describe 'RPMSpec grammar', ->
     expect(lines[0][0]).toEqual value: '%changelog', scopes: ['source.rpm-spec',
       'entity.name.section.rpm-spec']
     expect(lines[1][1]).toEqual value: 'Mon May 20 2013', scopes:
-      ['source.rpm-spec', 'constant.rpm-spec']
+      ['source.rpm-spec', 'constant.changelogs']
     expect(lines[1][3]).toEqual value: 'Jane Doe', scopes:
-      ['source.rpm-spec','entity.name.rpm-spec']
+      ['source.rpm-spec','entity.name.changelogs']
     expect(lines[1][5]).toEqual value: '<jdoe@redhat.com>', scopes:
-      ['source.rpm-spec','entity.name.rpm-spec']
+      ['source.rpm-spec','variable.other.changelogs']
     expect(lines[1][7]).toEqual value: '3.0.0-26.el3_1.1', scopes:
-      ['source.rpm-spec','constant.language.rpm-spec']
+      ['source.rpm-spec','constant.numeric.changelogs']
     expect(lines[2][1]).toEqual value: 'foo bar', scopes:
-      ['source.rpm-spec','comment.rpm-spec']
+      ['source.rpm-spec','comment.changelogs']
 
   it 'tokenizes old SuSE changelog entries', ->
     lines = grammar.tokenizeLines '''
@@ -307,8 +314,8 @@ describe 'RPMSpec grammar', ->
     expect(lines[0][0]).toEqual value: '%changelog', scopes: ['source.rpm-spec',
       'entity.name.section.rpm-spec']
     expect(lines[1][1]).toEqual value: 'Sat Jul  3 2010', scopes:
-      ['source.rpm-spec', 'constant.rpm-spec']
+      ['source.rpm-spec', 'constant.changelogs']
     expect(lines[1][3]).toEqual value: 'jane@suse.de', scopes:
-      ['source.rpm-spec','entity.name.rpm-spec']
+      ['source.rpm-spec','variable.other.changelogs']
     expect(lines[2][1]).toEqual value: 'I added this extra content', scopes:
-      ['source.rpm-spec','comment.rpm-spec']
+      ['source.rpm-spec','comment.changelogs']
