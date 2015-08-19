@@ -2,6 +2,7 @@
 * separate changelog grammar
 * handle openSuSE Build Service changelogs written by the osc tool
 * handle variables with inverted tests
+* comment out tests that Travis CI cannot run
 
 ## 0.4.1 - package release
 * add parsing of RedHat new style changelog entries
