@@ -1,3 +1,7 @@
+## 0.5.1 - configured configure
+* %configure macros detected
+* %files entries include most of their parameters in their highlights
+
 ## 0.5.0 - logical logs
 * separate changelog grammar
 * handle openSuSE Build Service changelogs written by the osc tool

@@ -36,6 +36,14 @@ describe 'RPMSpec grammar', ->
     expect(tokens[0]).toEqual value: 'Packager:', scopes: ['source.rpm-spec',
      'keyword.rpm-spec']
 
+    {tokens} = grammar.tokenizeLine('Requires:')
+    expect(tokens[0]).toEqual value: 'Requires:', scopes: ['source.rpm-spec',
+     'keyword.rpm-spec']
+
+    {tokens} = grammar.tokenizeLine('Requires(preun):')
+    expect(tokens[0]).toEqual value: 'Requires(preun):', scopes: ['source.rpm-spec',
+     'keyword.rpm-spec']
+
   it 'tokenizes licenses', ->
     {tokens} = grammar.tokenizeLine('GPL-2.0')
     expect(tokens[0]).toEqual value: 'GPL-2.0', scopes: ['source.rpm-spec',
@@ -229,7 +237,7 @@ describe 'RPMSpec grammar', ->
     expect(tokens[0]).toEqual value: '%doc', scopes: ['source.rpm-spec',
       'storage.modifier.rpm-spec']
 # token[1] is just the whitespace
-    expect(tokens[2]).toEqual value: '%noverify', scopes: ['source.rpm-spec',
+    expect(tokens[2]).toEqual value: '%noverify(user group)', scopes: ['source.rpm-spec',
       'storage.modifier.rpm-spec']
 
   it 'tokenizes a files list', ->
@@ -245,6 +253,21 @@ describe 'RPMSpec grammar', ->
     {tokens} = grammar.tokenizeLine('%patch0 -p1')
     expect(tokens[0]).toEqual value: '%patch0', scopes: ['source.rpm-spec',
       'keyword.control.rpm-spec']
+
+  it 'tokenizes config entries', ->
+    {tokens} = grammar.tokenizeLine('%config my_file')
+    expect(tokens[0]).toEqual value: '%config', scopes: ['source.rpm-spec',
+      'storage.modifier.rpm-spec']
+
+  it 'tokenizes config entries with options', ->
+    {tokens} = grammar.tokenizeLine('%config(noreplace) my_file')
+    expect(tokens[0]).toEqual value: '%config(noreplace)', scopes: ['source.rpm-spec',
+      'storage.modifier.rpm-spec']
+
+  it 'tokenizes configure macros', ->
+    {tokens} = grammar.tokenizeLine('%configure my_file')
+    expect(tokens[0]).toEqual value: '%configure', scopes:
+      ['source.rpm-spec', 'keyword.control.rpm-spec']
 
   it 'tokenizes a changelog section header', ->
     {tokens} = grammar.tokenizeLine('%changelog -f my_file')

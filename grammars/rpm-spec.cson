@@ -35,13 +35,13 @@
     'include': '#sections'
   }
   {
-    'include': '#modifiers'
-  }
-  {
     'include': '#conditionals'
   }
   {
     'include': '#keywords'
+  }
+  {
+    'include': '#modifiers'
   }
   {
     'include': '#operators'
@@ -260,13 +260,20 @@
         'name': 'keyword.rpm-spec'
       }
       {
-        'match': '^(%(?:setup|patch[0-9]*))',
-        'name': 'keyword.control.rpm-spec'
+        'match': '^(%(?:setup|patch[0-9]*|configure))',
+        'captures':
+          '1':
+            'name': 'keyword.control.rpm-spec'
       }
       {
-        'match': '^(?:Conflicts|Obsoletes|Provides|Requires|Requires):',
+        'match': '^(?:Conflicts|Obsoletes|Provides):',
         'name': 'keyword.rpm-spec'
       }
+      {
+        'match': '^(?:Requires\\((?:preun|postun|pre|post)\\)|Requires):',
+        'name': 'keyword.rpm-spec'
+      }
+
       {
         'match': '^(Enhances|Suggests|BuildConflicts|BuildRequires|Recommends):',
         'name': 'keyword.rpm-spec'
@@ -490,16 +497,26 @@
   'modifiers':
     'patterns': [
       {
-        'match': '^%(?:define|global|undefine)',
+        'match': '^%(?:define|global|undefine|docdir|doc)',
         'name': 'storage.modifier.rpm-spec'
       }
       {
-        'match': '^%(?:config|docdir|doc|defattr)',
-        'name': 'storage.modifier.rpm-spec'
+        'match': '^(%config(?:\\(noreplace\\))?)[ \\t]+',
+        'captures':
+          '1':
+              'name': 'storage.modifier.rpm-spec'
       }
       {
-        'match': '%(?:attrib|attr|verify|noverify)',
-        'name': 'storage.modifier.rpm-spec'
+        'match': '^(%defattr\\(.*\\))',
+        'captures':
+          '1':
+              'name': 'storage.modifier.rpm-spec'
+      }
+      {
+        'match': '(%(?:attrib|attr|verify|noverify)\\(.*\\)) ',
+        'captures':
+          '1':
+              'name': 'storage.modifier.rpm-spec'
       }
     ]
   'conditionals':
