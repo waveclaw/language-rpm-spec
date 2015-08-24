@@ -1,3 +1,7 @@
+## 0.7.2 - fourty-two fixes
+* Add 42nd test case (subpackage details)
+* Handle Fedora-specific keywords and Linux capabilities for %files
+
 ## 0.7.1 - sneaky snippets
 * add snippets for some annoying to remember patterns
 

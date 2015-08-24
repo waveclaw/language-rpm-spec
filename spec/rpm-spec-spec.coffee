@@ -362,17 +362,56 @@ describe 'RPMSpec grammar', ->
 #    expect(lines[2][1]).toEqual value: 'foo bar', scopes:
 #      ['source.rpm-spec','comment.changelogs']
 
-  it 'tokenizes old SuSE changelog entries', ->
+  it 'tokenizes Linux capabilities', ->
     lines = grammar.tokenizeLines '''
-%changelog
-* Sat Jul  3 2010 jane@suse.de
-- I added this extra content
+%files
+%caps(cap_net_admin=pe) FOO.BAR
 '''
-    expect(lines[0][0]).toEqual value: '%changelog', scopes: ['source.rpm-spec',
+    expect(lines[0][0]).toEqual value: '%files', scopes: ['source.rpm-spec',
       'entity.name.section.rpm-spec']
-#    expect(lines[1][1]).toEqual value: 'Sat Jul  3 2010', scopes:
-#      ['source.rpm-spec', 'constant.changelogs']
-#    expect(lines[1][3]).toEqual value: 'jane@suse.de', scopes:
-#      ['source.rpm-spec','variable.other.changelogs']
-#    expect(lines[2][1]).toEqual value: 'I added this extra content', scopes:
-#      ['source.rpm-spec','comment.changelogs']
+    expect(lines[1][0]).toEqual value: '%caps(cap_net_admin=pe)', scopes:
+      ['source.rpm-spec', 'storage.modifier.rpm-spec']
+
+  it 'tokenizes multiple properties in the %files section', ->
+    lines = grammar.tokenizeLines '''
+%files
+%config(noreplace) %attr(644,-,-) %{confdir}/FOO.BAR
+%doc something
+'''
+    expect(lines[0][0]).toEqual value: '%files', scopes: ['source.rpm-spec',
+      'entity.name.section.rpm-spec']
+    expect(lines[1][0]).toEqual value: '%config(noreplace)', scopes:
+      ['source.rpm-spec', 'storage.modifier.rpm-spec']
+    expect(lines[1][2]).toEqual value: '%attr(644,-,-)', scopes:
+      ['source.rpm-spec', 'storage.modifier.rpm-spec']
+    expect(lines[1][4]).toEqual value: '%{', scopes:
+      ['source.rpm-spec', 'punctuation.other.bracket.rpm-spec']
+    expect(lines[1][5]).toEqual value: 'confdir', scopes:
+      ['source.rpm-spec', 'variable.other.rpm-spec']
+    expect(lines[1][6]).toEqual value: '}', scopes:
+      ['source.rpm-spec', 'punctuation.other.bracket.rpm-spec']
+    expect(lines[2][0]).toEqual value: '%doc', scopes:
+      ['source.rpm-spec', 'storage.modifier.rpm-spec']
+
+  it 'tokenizes subpackages', ->
+    lines = grammar.tokenizeLines '''
+%package foo
+Group: bar
+License: GPL-2.0
+%description
+baz
+
+%files foo
+'''
+    expect(lines[0][0]).toEqual value: '%package', scopes: ['source.rpm-spec',
+      'entity.name.section.rpm-spec']
+    expect(lines[1][0]).toEqual value: 'Group:', scopes:
+      ['source.rpm-spec', 'keyword.rpm-spec']
+    expect(lines[2][0]).toEqual value: 'License:', scopes:
+      ['source.rpm-spec', 'keyword.rpm-spec']
+    expect(lines[2][2]).toEqual value: 'GPL-2.0', scopes:
+      ['source.rpm-spec', 'constant.language.rpm-spec']
+    expect(lines[3][0]).toEqual value: '%description', scopes:
+      ['source.rpm-spec', 'entity.name.section.rpm-spec']
+    expect(lines[6][0]).toEqual value: '%files', scopes:
+      ['source.rpm-spec', 'entity.name.section.rpm-spec']

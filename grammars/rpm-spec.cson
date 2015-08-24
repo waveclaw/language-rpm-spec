@@ -325,9 +325,10 @@
     ]
   'macros':
     # see https://en.opensuse.org/openSUSE:Packaging_Conventions_RPM_Macros
+    # see https://fedoraproject.org/wiki/How_to_create_an_RPM_package
     'patterns': [
       {
-        'match': '^(%(?:setup|patch[0-9]*|configure))',
+        'match': '^(%(?:setup|patch[0-9]*|configure|autosetup))',
         'captures':
           '1':
             'name': 'support.function.rpm-spec'
@@ -526,43 +527,83 @@
     # see http://www.zarb.org/~jasonc/macros.php
     'patterns': [
       {
-        'match': '^%\\{?__(?:aclocal|ar|as|autoconf)\\}?',
+        'match': '^%__(?:aclocal|ar|as|autoconf)',
         'name': 'support.constant.rpm-spec'
       }
       {
-        'match': '^%\\{?__(?:autoheader|automake|awk)\\}?',
+        'match': '^%__(?:autoheader|automake|awk)',
         'name': 'support.constant.rpm-spec'
       }
       {
-        'match': '^%\\{?__(?:bzip2|bzip|cat|cc|chgrp_Rhf|chgrp)\\}?',
+        'match': '^%__(?:bzip2|bzip|cat|cc|chgrp_Rhf|chgrp)',
         'name': 'support.constant.rpm-spec'
       }
       {
-        'match': '^%\\{?__(?:chmod|chown_Rhf|chown|cpio|cp)\\}?',
+        'match': '^%__(?:chmod|chown_Rhf|chown|cpio|cp)',
         'name': 'support.constant.rpm-spec'
       }
       {
-        'match': '^%\\{?__(?:cpp|cxx|grep|gzip)\\}?',
+        'match': '^%__(?:cpp|cxx|grep|gzip|patch)',
         'name': 'support.constant.rpm-spec'
       }
       {
-        'match': '^%\\{?__(?:id_u|id|install|ld|libtoolize)\\}?',
+        'match': '^%__(?:id_u|id|install|ld|libtoolize)',
         'name': 'support.constant.rpm-spec'
       }
       {
-        'match': '^%\\{?__(?:ln_s|make|mkdir_p|mkdir|mv)\\}?',
+        'match': '^%__(?:ln_s|make|mkdir_p|mkdir|mv)',
         'name': 'support.constant.rpm-spec'
       }
       {
-        'match': '^%\\{?__(?:nm|objcopy|objdump|perl)\\}?',
+        'match': '^%__(?:nm|objcopy|objdump|perl)',
         'name': 'support.constant.rpm-spec'
       }
       {
-        'match': '^%\\{?__(?:pgp|prelink_undo_cmd|python)\\}?',
+        'match': '^%__(?:pgp|prelink_undo_cmd|python)',
         'name': 'support.constant.rpm-spec'
       }
       {
-        'match': '^%\\{?__(?:ranlib|rm|sed|strip|tar|unzip)\\}?',
+        'match': '^%__(?:ranlib|rm|sed|strip|tar|unzip)',
+        'name': 'support.constant.rpm-spec'
+      }
+      {
+        'match': '^%\\{__(?:aclocal|ar|as|autoconf)\\}',
+        'name': 'support.constant.rpm-spec'
+      }
+      {
+        'match': '^%\\{__(?:autoheader|automake|awk)\\}',
+        'name': 'support.constant.rpm-spec'
+      }
+      {
+        'match': '^%\\{__(?:bzip2|bzip|cat|cc|chgrp_Rhf|chgrp)\\}',
+        'name': 'support.constant.rpm-spec'
+      }
+      {
+        'match': '^%\\{__(?:chmod|chown_Rhf|chown|cpio|cp)\\}',
+        'name': 'support.constant.rpm-spec'
+      }
+      {
+        'match': '^%\\{__(?:cpp|cxx|grep|gzip|patch)\\}',
+        'name': 'support.constant.rpm-spec'
+      }
+      {
+        'match': '^%\\{__(?:id_u|id|install|ld|libtoolize)\\}',
+        'name': 'support.constant.rpm-spec'
+      }
+      {
+        'match': '^%\\{__(?:ln_s|make|mkdir_p|mkdir|mv)\\}',
+        'name': 'support.constant.rpm-spec'
+      }
+      {
+        'match': '^%\\{__(?:nm|objcopy|objdump|perl)\\}',
+        'name': 'support.constant.rpm-spec'
+      }
+      {
+        'match': '^%\\{__(?:pgp|prelink_undo_cmd|python)\\}',
+        'name': 'support.constant.rpm-spec'
+      }
+      {
+        'match': '^%\\{__(?:ranlib|rm|sed|strip|tar|unzip)\\}',
         'name': 'support.constant.rpm-spec'
       }
     ]
@@ -646,6 +687,12 @@
       }
       {
         'match': '(%(?:attrib|attr|verify|noverify)\\(.*\\)) ',
+        'captures':
+          '1':
+              'name': 'storage.modifier.rpm-spec'
+      }
+      {
+        'match': '(%(?:lang|caps)\\(.*\\)) ',
         'captures':
           '1':
               'name': 'storage.modifier.rpm-spec'
