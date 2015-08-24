@@ -38,7 +38,10 @@
     'include': '#conditionals'
   }
   {
-    'include': '#keywords'
+    'include': '#metadata'
+  }
+  {
+    'include': '#macros'
   }
   {
     'include': '#modifiers'
@@ -253,17 +256,11 @@
         }
 
     ]
-  'keywords':
+  'metadata':
     'patterns': [
       {
         'match': '^(?:Icon|ExclusiveOs|ExcludeOs|NoSource|NoPatch):',
         'name': 'keyword.rpm-spec'
-      }
-      {
-        'match': '^(%(?:setup|patch[0-9]*|configure))',
-        'captures':
-          '1':
-            'name': 'keyword.control.rpm-spec'
       }
       {
         'match': '^(?:Conflicts|Obsoletes|Provides):',
@@ -327,6 +324,92 @@
         ]
       }
     ]
+  'macros':
+    # see https://en.opensuse.org/openSUSE:Packaging_Conventions_RPM_Macros
+    'patterns': [
+      {
+        'match': '^(%(?:setup|patch[0-9]*|configure))',
+        'captures':
+          '1':
+            'name': 'support.function.rpm-spec'
+      }
+      {
+        'match': '^%\\{?(?:desktop_database_postun|desktop_database_post)\\}?',
+        'name': 'support.function.rpm-spec'
+      }
+      {
+        'match': '^%\\{?(?:fillup_and_insserv|fillup_only|find_lang)\\}?',
+        'name': 'support.function.rpm-spec'
+      }
+      {
+        'match': '^%\\{?(?:icon_theme_cache_postun|icon_theme_cache_post)\\}?',
+        'name': 'support.function.rpm-spec'
+      }
+      {
+        'match': '^%\\{?(?:insserv_cleanup|insserv_force_if_yast)\\}?',
+        'name': 'support.function.rpm-spec'
+      }
+      {
+        'match': '^%\\{?(?:install_info_delete|install_info|gpg_verify)\\}?',
+        'name': 'support.function.rpm-spec'
+      }
+      {
+        'match': '^%\\{?(?:perl_archlib|perl_gen_filelist)\\}?',
+        'name': 'support.function.rpm-spec'
+      }
+      {
+        'match': '^%\\{?(?:perl_make_install|perl_process_packlist)\\}?',
+        'name': 'support.function.rpm-spec'
+      }
+      {
+        'match': '^%\\{?(?:perl_sitearch|perl_sitelib)\\}?',
+        'name': 'support.function.rpm-spec'
+      }
+      {
+        'match': '^%\\{?(?:perl_vendorarch|perl_vendorlib|perl_version)\\}?',
+        'name': 'support.function.rpm-spec'
+      }
+      {
+        'match': '^%\\{?(?:py_incdir|py_libdir|py_requires|py_sitedir|py_ver)\\}?',
+        'name': 'support.function.rpm-spec'
+      }
+      {
+        'match': '^%\\{?(?:remove_and_set|restart_on_update)\\}?',
+        'name': 'support.function.rpm-spec'
+      }
+      {
+        'match': '^%\\{?(?:run_ldconfig|run_permissions)\\}?',
+        'name': 'support.function.rpm-spec'
+      }
+      {
+        'match': '^%\\{?(?:service_add_pre|service_add_post)\\}?',
+        'name': 'support.function.rpm-spec'
+      }
+      {
+        'match': '^%\\{?(?:service_del_preun|service_del_postun)\\}?',
+        'name': 'support.function.rpm-spec'
+      }
+      {
+        'match': '^%\\{?(?:set_permissions|stop_on_removal)\\}?',
+        'name': 'support.function.rpm-spec'
+      }
+      {
+        'match': '^%\\{?(?:suse_update_config|suse_update_desktop_file)\\}?',
+        'name': 'support.function.rpm-spec'
+      }
+      {
+        'match': '^%\\{?(?:tcl_version|ul_version|verify_permissions)\\}?',
+        'name': 'support.function.rpm-spec'
+      }
+      {
+        'match': '^%\\{?(?:create_subdir_filelist|create_exclude_filelist)\\}?',
+        'name': 'support.function.rpm-spec'
+      }
+      {
+        'match': '^%\\{?(?:makeinstall|make_jobs|update_menus|clean_menus)\\}?',
+        'name': 'support.function.rpm-spec'
+      }
+    ]
   'sections':
     'patterns': [
       {
@@ -353,16 +436,7 @@
         'end': '^$',
         'patterns': [
           {
-            'include': '#modifiers'
-          }
-          {
-            'include': '#conditionals'
-          }
-          {
-            'include': '#variables'
-          }
-          {
-            'include': '#comments'
+            'include': '#std_section'
           }
         ]
       }
@@ -374,16 +448,7 @@
         'end': '^$',
         'patterns': [
           {
-            'include': '#modifiers'
-          }
-          {
-            'include': '#conditionals'
-          }
-          {
-            'include': '#variables'
-          }
-          {
-            'include': 'source.shell'
+            'include': '#std_section'
           }
         ]
       }
@@ -399,18 +464,33 @@
         'end': '^$',
         'patterns': [
           {
-            'include': '#modifiers'
-          }
-          {
-            'include': '#conditionals'
-          }
-          {
-            'include': '#variables'
-          }
-          {
-            'include': '#shell_syntax'
+            'include': '#std_section'
           }
         ]
+      }
+    ]
+  'std_section':
+    'patterns': [
+      {
+        'include': '#comments'
+      }
+      {
+        'include': '#conditionals'
+      }
+      {
+        'include': '#macros'
+      }
+      {
+        'include': '#modifiers'
+      }
+      {
+        'include': '#variables'
+      }
+      {
+        'include': '#constants'
+      }
+      {
+        'include': '#shell_syntax'
       }
     ]
   'comments':

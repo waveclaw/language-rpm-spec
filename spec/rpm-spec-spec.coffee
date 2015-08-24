@@ -248,11 +248,11 @@ describe 'RPMSpec grammar', ->
   it 'tokenizes setup and patch', ->
     {tokens} = grammar.tokenizeLine('%setup -q')
     expect(tokens[0]).toEqual value: '%setup', scopes: ['source.rpm-spec',
-      'keyword.control.rpm-spec']
+      'support.function.rpm-spec']
 
     {tokens} = grammar.tokenizeLine('%patch0 -p1')
     expect(tokens[0]).toEqual value: '%patch0', scopes: ['source.rpm-spec',
-      'keyword.control.rpm-spec']
+      'support.function.rpm-spec']
 
   it 'tokenizes config entries', ->
     {tokens} = grammar.tokenizeLine('%config my_file')
@@ -267,7 +267,7 @@ describe 'RPMSpec grammar', ->
   it 'tokenizes configure macros', ->
     {tokens} = grammar.tokenizeLine('%configure my_file')
     expect(tokens[0]).toEqual value: '%configure', scopes:
-      ['source.rpm-spec', 'keyword.control.rpm-spec']
+      ['source.rpm-spec', 'support.function.rpm-spec']
 
   it 'tokenizes a changelog section header', ->
     {tokens} = grammar.tokenizeLine('%changelog -f my_file')
