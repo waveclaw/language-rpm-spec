@@ -1,3 +1,6 @@
+## 0.7.1 - sneaky snippets
+* add snippets for some annoying to remember patterns
+
 ## 0.7.0 - careful commands
 * common commands detected
 * %package sections stand out

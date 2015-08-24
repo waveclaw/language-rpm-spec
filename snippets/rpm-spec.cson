@@ -13,3 +13,32 @@
 # Please submit bugfixes or comments via
 # https://github.com/waveclaw/language-rpm-spec/issues
 #
+'.source.rpm-spec':
+  'subpackage':
+    'prefix': '%pack'
+    'body': """
+      %package $1
+      Group: foo
+      Summary: bar
+      %description $1
+      baz
+      
+      %files $1
+    """
+  'build':
+    'prefix': '%bld'
+    'body': """
+      %build
+      %configure
+      %if %{defined make_jobs}
+      %{make_jobs} %{?_smp_mflags}
+      %else
+      %{__make} %{?_smp_mflags}
+      %endif
+    """
+  'install':
+    'prefix': '%inst'
+    'body': """
+      %install
+      %{__make} install DESTDIR=%{buildroot} %{?_smp_mflags}
+    """
