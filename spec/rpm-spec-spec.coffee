@@ -143,6 +143,40 @@ describe 'RPMSpec grammar', ->
     expect(tokens[0]).toEqual value: '%ifarch', scopes: ['source.rpm-spec',
      'keyword.control.rpm-spec']
 
+  it 'tokenizes commands without brakets', ->
+    {tokens} = grammar.tokenizeLine('%__bzip2')
+    expect(tokens[0]).toEqual value: '%__bzip2', scopes: ['source.rpm-spec',
+     'support.constant.rpm-spec']
+
+    {tokens} = grammar.tokenizeLine('%__cat')
+    expect(tokens[0]).toEqual value: '%__cat', scopes: ['source.rpm-spec',
+     'support.constant.rpm-spec']
+
+    {tokens} = grammar.tokenizeLine('%__cp ')
+    expect(tokens[0]).toEqual value: '%__cp', scopes: ['source.rpm-spec',
+     'support.constant.rpm-spec']
+
+  it 'tokenizes commands with brakets', ->
+    {tokens} = grammar.tokenizeLine('%{__bzip2}')
+    expect(tokens[0]).toEqual value: '%{__bzip2}', scopes: ['source.rpm-spec',
+     'support.constant.rpm-spec']
+
+    {tokens} = grammar.tokenizeLine('%{__cp} ')
+    expect(tokens[0]).toEqual value: '%{__cp}', scopes: ['source.rpm-spec',
+     'support.constant.rpm-spec']
+
+    {tokens} = grammar.tokenizeLine('%{__install}')
+    expect(tokens[0]).toEqual value: '%{__install}', scopes: ['source.rpm-spec',
+     'support.constant.rpm-spec']
+
+    {tokens} = grammar.tokenizeLine('%{__make}')
+    expect(tokens[0]).toEqual value: '%{__make}', scopes: ['source.rpm-spec',
+     'support.constant.rpm-spec']
+
+    {tokens} = grammar.tokenizeLine('%{__mkdir_p}')
+    expect(tokens[0]).toEqual value: '%{__mkdir_p}', scopes: ['source.rpm-spec',
+     'support.constant.rpm-spec']
+
   it 'tokenizes definitions', ->
     {tokens} = grammar.tokenizeLine('%global')
     expect(tokens[0]).toEqual value: '%global', scopes: ['source.rpm-spec',
