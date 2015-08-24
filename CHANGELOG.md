@@ -1,3 +1,8 @@
+## 0.7.0 - careful commands
+* common commands detected
+* %package sections stand out
+* merge standard-like setctions into a standarized section
+
 ## 0.5.1 - configured configure
 * %configure macros detected
 * %files entries include most of their parameters in their highlights
