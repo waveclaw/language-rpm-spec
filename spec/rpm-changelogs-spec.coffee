@@ -13,7 +13,7 @@
 # Please submit bugfixes or comments via
 # https://github.com/waveclaw/language-rpm-spec/issues
 #
-{TextEditor} = require 'atom'
+ed = require 'atom'
 fs = require 'fs'
 path = require 'path'
 
