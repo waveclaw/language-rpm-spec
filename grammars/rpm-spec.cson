@@ -505,7 +505,7 @@
   'comments':
     'patterns': [
       {
-        'match': '#.*$',
+        'match': '^\s*#.*$',
         'name': 'comment.line.rpm-spec'
       }
     ]
