@@ -1,5 +1,8 @@
+## 0.9.0 - complicated comments
+* Fix broken comments when Microsoft sharp languages are present on the line
+
 ## 0.8.0 - deadly deprications
-* Fix Travis CI builds by not using a depricated keyword for the init phase
+* Fix Travis CI builds by not using a deprecated keyword for the init phase
 
 ## 0.7.2 - fourty-two fixes
 * Add 42nd test case (subpackage details)

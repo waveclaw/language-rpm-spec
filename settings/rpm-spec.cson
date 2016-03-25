@@ -15,7 +15,7 @@
 #
 '.source.rpm-spec':
   'editor':
-    'commentStart': '# '
+    'commentStart': '#(?<!C#|F#|M#)'
     'completions': [
       'BuildArchitectures:'
       'ExclusiveArch:'

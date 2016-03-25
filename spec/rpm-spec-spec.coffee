@@ -27,6 +27,10 @@ describe 'RPMSpec grammar', ->
     runs ->
       grammar = atom.grammars.grammarForScopeName('source.rpm-spec')
 
+  afterEach ->
+    atom.packages.deactivatePackages()
+    atom.packages.unloadPackages()
+
   it 'parses the grammar', ->
     expect(grammar).toBeDefined()
     expect(grammar.scopeName).toBe 'source.rpm-spec'
@@ -415,3 +419,40 @@ baz
       ['source.rpm-spec', 'entity.name.section.rpm-spec']
     expect(lines[6][0]).toEqual value: '%files', scopes:
       ['source.rpm-spec', 'entity.name.section.rpm-spec']
+
+  it 'handles comment-free lines', ->
+    {tokens} = grammar.tokenizeLine('this has no comment')
+    expect(tokens[0]).toEqual value: 'this has no comment', scopes:
+      ['source.rpm-spec']
+
+  it 'handles commented lines', ->
+    {tokens} = grammar.tokenizeLine('this has # comment')
+    expect(tokens[0]).toEqual value: 'this has ', scopes:
+      [ 'source.rpm-spec' ]
+    expect(tokens[1]).toEqual value: '#', scopes:
+      [ 'source.rpm-spec','punctuation.comment.rpm-spec' ]
+    expect(tokens[2]).toEqual value: ' comment', scopes:
+      [ 'source.rpm-spec','comment.line.rpm-spec' ]
+
+  it 'handles lines with Microsoft sharp languages', ->
+    {tokens} = grammar.tokenizeLine('no comment on C# or F# or M# ')
+    expect(tokens[0]).toEqual value: 'no comment on C# or F# or M# ', scopes:
+      [ 'source.rpm-spec' ]
+
+  it 'handles commented lines with Microsoft sharp languages', ->
+    {tokens} = grammar.tokenizeLine('this C#, F# line has # one comment')
+    expect(tokens[0]).toEqual value: 'this C#, F# line has ', scopes:
+      [ 'source.rpm-spec' ]
+    expect(tokens[1]).toEqual value: '#', scopes:
+      [ 'source.rpm-spec','punctuation.comment.rpm-spec' ]
+    expect(tokens[2]).toEqual value: ' one comment', scopes:
+      [ 'source.rpm-spec','comment.line.rpm-spec' ]
+
+  it 'handles commented lines with Microsoft sharp languages in comments', ->
+    {tokens} = grammar.tokenizeLine('this C#, F# line has # C# comment')
+    expect(tokens[0]).toEqual value: 'this C#, F# line has ', scopes:
+      [ 'source.rpm-spec' ]
+    expect(tokens[1]).toEqual value: '#', scopes:
+      [ 'source.rpm-spec','punctuation.comment.rpm-spec' ]
+    expect(tokens[2]).toEqual value: ' C# comment', scopes:
+      [ 'source.rpm-spec','comment.line.rpm-spec' ]

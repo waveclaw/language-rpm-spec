@@ -504,9 +504,13 @@
     ]
   'comments':
     'patterns': [
-      {
-        'match': '#.*$',
-        'name': 'comment.line.rpm-spec'
+      {  # Thank you, Microsoft for the C#, F# and M# language names.
+        'match': '(#)(?<!C#|F#|M#)(.*)$',
+        'captures':
+          '1':
+            'name': 'punctuation.comment.rpm-spec'
+          '2':
+            'name': 'comment.line.rpm-spec'
       }
     ]
   'operators':
