@@ -1,6 +1,6 @@
 {
   "name": "language-rpm-spec",
-  "main": "./lib/language-rpm-spec",
+  "readme": "./README.md",
   "version": "0.9.0",
   "description": "Syntax highlighting for RPM Specfiles",
   "keyswords": [
