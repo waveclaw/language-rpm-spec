@@ -1,6 +1,7 @@
 {
   "name": "language-rpm-spec",
-  "main": "./lib/language-rpm-spec",
+  "readme": "./README.md",
+  "author": "JD Powell <waveclaw@hotmail.com>",
   "version": "0.9.0",
   "description": "Syntax highlighting for RPM Specfiles",
   "keyswords": [
@@ -14,12 +15,12 @@
     "atom": ">=1.0.0",
     "node": "*"
   },
-  "homepage": "http://atom.github.io",
+  "homepage": "https://atom.io/packages/language-rpm-spec",
   "repository": "https://github.com/waveclaw/language-rpm-spec",
   "bugs": "https://github.com/waveclaw/language-rpm-spec/issues",
   "devDependencies": {
     "coffeelint": "^1.10.1",
-    "coffee-script": "1.7.0"
+    "coffee-script": "^1.8.0"
   },
   "license": "MIT",
   "dependencies": {}
