@@ -1,3 +1,6 @@
+## 0.11.0 - section selections
+* Initial testing work for parsing sections all the way to next section
+
 ## 0.10.0 - translation testing
 * Add pretrans and posttrans based on Fedora Packaging Guidlines
 
