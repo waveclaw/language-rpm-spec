@@ -58,4 +58,6 @@
       '%triggerpostun'
       '%triggerun'
       '%verifyscript'
+      '%pretrans'
+      '%posttrans'
     ]

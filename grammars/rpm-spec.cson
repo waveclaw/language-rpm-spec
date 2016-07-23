@@ -16,8 +16,8 @@
 'fileTypes': [
   'spec'
 ]
-'foldingStartMarker': '(^%(build$|changelog|check$|clean$|description|files|install$|package|(pre($| .*))|prep$|preun|post|postun|trigger|triggerin|triggerpostun|triggerun|verifyscript)\\s*$)'
-'foldingStopMarker': '(^$)'
+'foldingStartMarker': '(^%(build$|changelog|check$|clean$|description|files|install$|package|prep$|preun|pretrans|(pre($| .*))|posttrans|postun|post|trigger|triggerin|triggerpostun|triggerun|verifyscript)\\s*$)'
+'foldingStopMarker': '(^%(build$|changelog|check$|clean$|description|files|install$|package|pre(p|un|trans)?|post(trans|un)?|trigger(in|postun|un)?|verifyscript)\\s*$)|\Z'
 'name': 'RPMSpec'
 'patterns': [
   {
@@ -433,7 +433,7 @@
         'beginCaptures':
           '1':
               'name': 'entity.name.section.rpm-spec',
-        'end': '^$',
+        'end': '^$|\Z'
         'patterns': [
           {
             'include': '#std_section'
@@ -445,7 +445,7 @@
         'beginCaptures':
           '1':
               'name': 'entity.name.section.rpm-spec',
-        'end': '^$',
+        'end': '^$|\Z',
         'patterns': [
           {
             'include': '#std_section'
@@ -457,11 +457,11 @@
         'name': 'entity.name.section.rpm-spec'
       }
       {
-        'begin': '^(%(?:preun|prep|pre|postun|post|packagepreun))',
+        'begin': '^(%(?:preun|prep|pretrans|pre|posttrans|postun|post|packagepreun))',
         'beginCaptures':
           '1':
               'name': 'entity.name.section.rpm-spec',
-        'end': '^$',
+        'end': '^$|\Z',
         'patterns': [
           {
             'include': '#std_section'

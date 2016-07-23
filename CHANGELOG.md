@@ -1,3 +1,6 @@
+## 0.10.0 - translation testing
+* Add pretrans and posttrans based on Fedora Packaging Guidlines
+
 ## 0.9.0 - complicated comments
 * Fix broken comments when Microsoft sharp languages are present on the line
 

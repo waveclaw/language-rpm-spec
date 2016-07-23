@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2015 JD Powell <waveclaw@waveclaw.net>
+# Copyright (c) 2015-2016 JD Powell <waveclaw@waveclaw.net>
 #
 # All modifications and additions to the file contributed by third parties
 # remain the property of their copyright owners, unless otherwise agreed
@@ -73,7 +73,6 @@ describe 'RPMSpec grammar', ->
     expect(tokens[2]).toEqual value: 'armv7l', scopes: ['source.rpm-spec',
      'constant.language.rpm-spec']
 
-
   it 'tokenizes numbers', ->
     {tokens} = grammar.tokenizeLine('1234')
     expect(tokens[0]).toEqual value: '1234', scopes: ['source.rpm-spec',
@@ -99,6 +98,14 @@ describe 'RPMSpec grammar', ->
 
     {tokens} = grammar.tokenizeLine('%postun')
     expect(tokens[0]).toEqual value: '%postun', scopes: ['source.rpm-spec',
+     'entity.name.section.rpm-spec']
+
+    {tokens} = grammar.tokenizeLine('%posttrans')
+    expect(tokens[0]).toEqual value: '%posttrans', scopes: ['source.rpm-spec',
+     'entity.name.section.rpm-spec']
+
+    {tokens} = grammar.tokenizeLine('%pretrans')
+    expect(tokens[0]).toEqual value: '%pretrans', scopes: ['source.rpm-spec',
      'entity.name.section.rpm-spec']
 
     {tokens} = grammar.tokenizeLine('%description')
@@ -282,6 +289,20 @@ describe 'RPMSpec grammar', ->
     {tokens} = grammar.tokenizeLine('%files')
     expect(tokens[0]).toEqual value: '%files', scopes: ['source.rpm-spec',
       'entity.name.section.rpm-spec']
+
+#  it 'tokenizes a multi-line files list with a section terminator', ->
+#    lines = grammar.tokenizeLines '''
+#%build
+#example
+#
+#%files
+#'''
+#    expect(lines[0][0]).toEqual value: '%build', scopes: ['source.rpm-spec',
+#      'entity.name.section.rpm-spec']
+#    expect(lines[1][0]).toEqual value: 'example', scopes: ['source.rpm-spec']
+#    expect(lines[2][0]).toEqual value: '', scopes: ['source.rpm-spec']
+#    expect(lines[3][0]).toEqual value: '%files', scopes: ['source.rpm-spec',
+#            'entity.name.section.rpm-spec']
 
   it 'tokenizes setup and patch', ->
     {tokens} = grammar.tokenizeLine('%setup -q')
