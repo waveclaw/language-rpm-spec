@@ -1,3 +1,6 @@
+## 0.11.1 - comentary cleaning
+* Only insert a comment character when using Ctrl+/ to toggle comment
+
 ## 0.11.0 - section selections
 * Initial testing work for parsing sections all the way to next section
 
