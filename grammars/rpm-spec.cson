@@ -250,7 +250,7 @@
             'name': 'constant.language.rpm-spec'
         }
         {
-            'match': '(?:ppc64p7|ppc64leppc64|ppc)',
+            'match': '(?:ppc64p7|ppc64le|ppc64|ppc)',
             'name': 'constant.language.rpm-spec'
         }
 
