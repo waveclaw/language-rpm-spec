@@ -1,3 +1,9 @@
+## 0.14.0 - brief barriers
+* Only mark platforms that are whole words
+
+## 0.13.0 - platform published
+* Support more Operating System and hardware combinations as constants
+
 ## 0.11.1 - comentary cleaning
 * Only insert a comment character when using Ctrl+/ to toggle comment
 

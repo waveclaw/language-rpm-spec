@@ -242,18 +242,21 @@
   'architectures':
     'patterns': [
         {
-            'match': '(?:noarch|i386|i586|x86_64|ia64|local)',
+            'match': '\\b(?:noarch|i386|i586|x86_64|ia64|local)\\b',
             'name': 'constant.language.rpm-spec'
         }
         {
-            'match': '(?:s390x|s390|armv6l|armv7hl|armv7l|aarch64|alpha|sparc64|sparcv9|sparc)',
+            'match': '\\b(?:s390x|s390|armv6l|armv7hl|armv7l)\\b',
             'name': 'constant.language.rpm-spec'
         }
         {
-            'match': '(?:ppc64p7|ppc64le|ppc64|ppc)',
+            'match': '\\b(?:ppc64p7|ppc64le|ppc64|ppc|aarch64)\\b',
             'name': 'constant.language.rpm-spec'
         }
-
+        {
+            'match': '\\b(?:alpha|sparc64|sparcv9|sparc)\\b',
+            'name': 'constant.language.rpm-spec'
+        }
     ]
   'metadata':
     'patterns': [
