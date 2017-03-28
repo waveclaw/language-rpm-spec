@@ -22,7 +22,7 @@
       Summary: bar
       %description $1
       baz
-      
+
       %files $1
     """
   'build':
@@ -42,3 +42,12 @@
       %install
       %{__make} install DESTDIR=%{buildroot} %{?_smp_mflags}
     """
+'.source.rpm-spec':
+  'changelog entry':
+    'prefix': 'chi'
+    'body': """
+      * ${1:weekday} ${2:monthofyear} ${3:dayofmonth} ${4:year} ${5:packager} - ${6:version}-${7:release}
+      - $8
+    """
+# unlike gedit snippets, static snippets like these
+# are fixed strings - no variables or expansions

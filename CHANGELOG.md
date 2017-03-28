@@ -1,3 +1,6 @@
+## 0.15.0 - snappy snippet
+* Add a 'chi' snippet for changelog entries not like gedit's on RHEL 7
+
 ## 0.14.0 - brief barriers
 * Only mark platforms that are whole words
 
