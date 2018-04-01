@@ -42,7 +42,6 @@
       %install
       %{__make} install DESTDIR=%{buildroot} %{?_smp_mflags}
     """
-'.source.rpm-spec':
   'changelog entry':
     'prefix': 'chi'
     'body': """
