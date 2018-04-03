@@ -2,7 +2,7 @@
   "name": "language-rpm-spec",
   "readme": "./README.md",
   "author": "JD Powell <waveclaw@hotmail.com>",
-  "version": "0.15.0",
+  "version": "0.16.0",
   "description": "Syntax highlighting for RPM Specfiles",
   "keyswords": [
     "rpm",
