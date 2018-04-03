@@ -1,3 +1,6 @@
+## 0.16.0 - snip snippets
+ * Remove duplicate snippets for updated Atom support
+
 ## 0.15.0 - snappy snippet
 * Add a 'chi' snippet for changelog entries not like gedit's on RHEL 7
 
