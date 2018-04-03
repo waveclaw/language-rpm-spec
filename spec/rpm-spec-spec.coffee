@@ -27,10 +27,6 @@ describe 'RPMSpec grammar', ->
     runs ->
       grammar = atom.grammars.grammarForScopeName('source.rpm-spec')
 
-  afterEach ->
-    atom.packages.deactivatePackages()
-    atom.packages.unloadPackages()
-
   it 'parses the grammar', ->
     expect(grammar).toBeDefined()
     expect(grammar.scopeName).toBe 'source.rpm-spec'
