@@ -1,3 +1,6 @@
+## 0.16.1 - extrvegant emails
+ * support anti-spam-bot format emails in change logs
+
 ## 0.16.0 - snip snippets
  * Remove duplicate snippets for updated Atom support
 
