@@ -36,7 +36,7 @@
   }
 # SuSE Open Build Service .changes files
   {
-    'match': '^(?:\\* )?([a-zA-Z]{3} [a-zA-Z]{3}[ ]+\\d+ \\d+:\\d+:\\d+ [A-Z]+ \\d{4}) - (.*) (<.*@.*>) ([#_a-zA-Z0-9.-]+)$',
+    'match': '^(?:\\* )?([a-zA-Z]{3} [a-zA-Z]{3}[ ]+\\d+ \\d+:\\d+:\\d+ [A-Z]+ \\d{4}) - (.*) (<.*>) ([#_a-zA-Z0-9.-]+)$',
     'captures':
       '1':
           'name': 'constant.changelogs'
@@ -49,7 +49,7 @@
   }
 # GNU Type II changelogs
   {
-    'match': '^(?:\\* )?([a-zA-Z]{3} [a-zA-Z]{3}[ ]+\\d+(?: \\d+:\\d+:\\d+ [A-Z]+)? \\d{4}) (.*) (<.+@.+>)(?: -)? ([#a-zA-Z0-9.-]+)?$',
+    'match': '^(?:\\* )?([a-zA-Z]{3} [a-zA-Z]{3}[ ]+\\d+(?: \\d+:\\d+:\\d+ [A-Z]+)? \\d{4}) (.*) (<.*>)(?: -)? ([#a-zA-Z0-9.-]+)?$',
     'captures':
       '1':
           'name': 'constant.changelogs'
@@ -62,7 +62,7 @@
   }
 # RedHat New Style changelogs
   {
-    'match': '^(?:\\* )?([a-zA-Z]{3} [a-zA-Z]{3}[ ]+\\d+(?: \\d+:\\d+:\\d+ [A-Z]+)? \\d{4}) (.*) (<.*@.*>)(?: -) (.*)$',
+    'match': '^(?:\\* )?([a-zA-Z]{3} [a-zA-Z]{3}[ ]+\\d+(?: \\d+:\\d+:\\d+ [A-Z]+)? \\d{4}) (.*) (<.*>)(?: -) (.*)$',
     'captures':
       '1':
           'name': 'constant.changelogs'
