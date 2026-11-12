@@ -250,7 +250,7 @@
             'name': 'constant.language.rpm-spec'
         }
         {
-            'match': '\\b(?:ppc64p7|ppc64le|ppc64|ppc|aarch64)\\b',
+            'match': '\\b(?:ppc64p7|ppc64le|ppc64|ppc|aarch64|riscv64)\\b',
             'name': 'constant.language.rpm-spec'
         }
         {
@@ -265,16 +265,19 @@
         'name': 'keyword.rpm-spec'
       }
       {
-        'match': '^(?:Conflicts|Obsoletes|Provides):',
+        'match': '^(?:Conflicts|Obsoletes|Provides|BuildRequires|BuildConflicts|BuildPreReq|PreReq):',
         'name': 'keyword.rpm-spec'
       }
       {
-        'match': '^(?:Requires\\((?:preun|postun|pre|post)\\)|Requires):',
+        'match': '^(?:Requires|Recommends|Suggests|Supplements|Enhances|OrderWithRequires)(?:\\([^)]*\\))?:',
         'name': 'keyword.rpm-spec'
       }
-
       {
-        'match': '^(Enhances|Suggests|BuildConflicts|BuildRequires|Recommends):',
+        'match': '^(?:BuildSystem|BuildOption(?:\\([^)]*\\))?):',
+        'name': 'keyword.rpm-spec'
+      }
+      {
+        'match': '^(Enhances|Suggests|BuildConflicts|BuildRequires|Recommends|OrderWithRequires):',
         'name': 'keyword.rpm-spec'
       }
       {
@@ -294,7 +297,7 @@
         'name': 'keyword.rpm-spec'
       }
       {
-        'match': '^(Name|Version|Release|Url|URL):',
+        'match': '^(Name|Version|Release|Url|URL|BugURL|VCS|ModularityLabel|DistTag):',
         'name': 'keyword.rpm-spec'
       }
       {
@@ -314,7 +317,7 @@
         ]
       }
       {
-        'begin': '^(License:)[ \\t]*',
+        'begin': '^((?:Source)?License:)[ \\t]*',
         'end': '$',
         'beginCaptures':
           '1':
@@ -444,7 +447,7 @@
         ]
       }
       {
-        'begin': '^(%(?:build|check|clean|install|verifyscript))$',
+        'begin': '^(%(?:build|check|clean|conf|generate_buildrequires|install|verifyscript))(?:[ \\t]+-[ap])?[ \\t]*$',
         'beginCaptures':
           '1':
               'name': 'entity.name.section.rpm-spec',
@@ -708,7 +711,7 @@
   'conditionals':
     'patterns': [
       {
-      'match': '%(?:ifarch|ifnarch|ifnos|ifos|if|else|endif)',
+      'match': '%(?:ifarch|ifnarch|ifnos|ifos|if|else|endif|elifarch|elifos|elif)\\b',
       'name': 'keyword.control.rpm-spec'
       }
     ]
